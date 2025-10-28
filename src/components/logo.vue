@@ -9,7 +9,7 @@ import logo from '@/assets/logo.png'
 
 <style scoped>
 .logo {
-  width: 320px;
+  width: 300px;
   height: auto;
 }
 </style>

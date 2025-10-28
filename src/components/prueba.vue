@@ -2,7 +2,7 @@
   <nav class="menu">
     <section class="menu__container">
       <div class="menu__logo">
-        <img :src="logo" alt="Logo UNA Táchira"  />
+       
       </div>
 
       <ul :class="['menu__links', { 'menu__links--show': menuVisible }]">
@@ -61,34 +61,54 @@ function setSubmenuRef(label, el) {
 }
 
 const menuItems = [
+
   {
-    label: 'CL TÁCHIRA',
+    label: 'INFORMACIÓN GENERAL',
     submenu: [
-      { label: 'QUIÉNES SOMOS' },
-      { label: 'HISTORIA' },
-      { label: 'AUTORIDADES' },
-      { label: 'ESTRUCTURA' },
-    ],
-  },
-  { label: 'ÁREAS ACADÉMICAS', href: '/' },
-  {
-    label: 'ESTUDIOS',
-    submenu: [
-      { label: 'PREGRADO' },
-      { label: 'POSGRADO' },
-      { label: 'EXTENSIÓN UNIVERSITARIA' },
-      { label: 'REPORTE DE NOTAS' },
+      { label: 'NOTICIAS' },
+      { label: 'RECOMENDACIONES' },
+      { label: 'NUESTRO CENTRO LOCAL' },
+      { label: 'AUTORIDADES DEL CENTRO' },
     ],
   },
   {
-    label: 'INSCRIPCIONES',
+    label: 'OFERTA ACADEMICA',
     submenu: [
-      { label: 'PREGRADO' },
-      { label: 'POSGRADO' },
-      { label: 'EXTENSIÓN UNIVERSITARIA' },
+      { label: '- Asesores por Carrera\n/Contactos (Pregrado)' },
+      { label: 'Subprograma Diseño Académico' },
+      { label: '- Curso Introducción - Servicios al Estudiante' },
     ],
   },
-  { label: 'NOTICIAS', href: '/' },
+  {
+    label: 'Gestión Estudiantil',
+    submenu: [
+      { label: '- Servicio Comunitario' },
+      { label: 'Cronograma Evaluaciones 2023-2' },
+      { label: 'Reporte de Notas' },
+      { label: 'Registro y Control Estudiantil' },
+    ],
+  },
+  {
+    label: 'Investigación y Postgrado',
+    submenu: [
+      { label: 'Investigaciones y Postgrado' },
+    ],
+  },
+    {
+    label: 'Administración',
+    submenu: [
+      { label: 'Administración y Aranceles' },
+      { label: 'Página UNASEC' },
+    ],
+  },
+    {
+    label: 'Extensión y Graduación',
+    submenu: [
+      { label: 'Extensión Universitaria' },
+      { label: 'Graduandos Táchira' },
+    ],
+  }
+  
 ]
 </script>
 
@@ -110,17 +130,18 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
-  background-color: #fff;
-  color: #1A4C8B;
-  height: 70px;
+  z-index: 900;
+  background-color: #1A4C8B;
+  color: #fff;
+  height: 60px;
   border-bottom: 1px solid #d0d0d0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 11em;
 }
 
 .menu__container {
   display: flex;
-  justify-content: space-between;
+  justify-content:right;
   align-items: center;
   width: 90%;
   max-width: 1200px;
@@ -130,15 +151,15 @@ body {
 
 .menu__logo {
   display: flex;
-  align-items: center;
-  height: 80%;
-  
+  align-items:flex-start;
+  height: 50%;
+  margin-left: -2.8em;
 }
 
 .menu__logo img {
 height:3.5em;
-  width: 15em;
-  margin-top: -20px;
+  width: 12em;
+  margin-top: -10px;
   border-radius: 5px;
 
  
@@ -148,6 +169,9 @@ height:3.5em;
   height: 100%;
   transition: transform 0.5s;
   display: flex;
+}
+.menu__link .a{
+  font-size: 10px;
 }
 
 .menu__item {
@@ -164,25 +188,25 @@ height:3.5em;
 }
 
 .menu__link {
-  color: #1A4C8B;
+  color: #fff;
   text-decoration: none;
-  padding: 0 30px;
+  padding: 0 5px;
   display: flex;
   height: 100%;
   align-items: center;
-  background-color: #fff;
+  background-color:#1A4C8B;
 }
 
 .menu__link:hover {
-  background-color: #e6f0ff;
-  color: #2C6CC9;
+  background-color:#2C6CC9 ;
+  color:#e6f0ff ;
 }
 
 .menu__arrow {
   transform: var(--transform);
   transition: transform 0.3s;
   display: block;
-  margin-left: 3px;
+  margin-left: 1px;
 }
 
 .menu__nesting {
@@ -196,31 +220,32 @@ height:3.5em;
   transform: translateY(100%);
   border: 1px solid #d0d0d0;
   border-radius: 4px;
-  background-color: #f9f9f9;
+  background-color: #1A4C8B;
 }
 
 .menu__link--inside {
-  padding: 30px 100px 30px 20px;
-  color: #1A4C8B;
-  background-color: #fff;
+  padding: 20px 10px 20px 20px;
+  color: #fff;
+  background-color: #1A4C8B;
+  font-size: 14px;
 }
 
 .menu__link--inside:hover {
-  background-color: #e6f0ff;
-  color: #2C6CC9;
+  background-color: #2C6CC9;
+  color:#e6f0ff ;
 }
 
 .menu__hamburguer {
-  height: 100%;
+  height: 50%;
   display: flex;
   align-items: center;
-  padding: 0 15px;
+  padding: 0 10px;
   cursor: pointer;
   display: none;
 }
 
 .menu__hamburguer img {
-  width: 40px;
+  width: 25px;
   height: auto;
 }
 
@@ -236,7 +261,7 @@ height:3.5em;
 
   .menu__item--active {
     --transform: rotate(0);
-    --background: #1A4C8B;
+    --background: #fff;
   }
 
   .menu__item--show {
@@ -247,10 +272,10 @@ height:3.5em;
     position: fixed;
     max-width: 400px;
     width: 100%;
-    top: 70px;
+    top: 14.5em;
     bottom: 0;
     right: 0;
-    background-color: #fff;
+    background-color: #1A4C8B;
     overflow-y: auto;
     display: grid;
     grid-auto-rows: max-content;
@@ -263,11 +288,12 @@ height:3.5em;
   }
 
   .menu__link {
-    padding: 25px 0;
-    padding-left: 30px;
+    padding: 10px 0;
+    padding-left: 40px;
     height: auto;
-    color: #1A4C8B;
-    background-color: #fff;
+    color: #fff;
+    background-color:#1A4C8B ;
+    font-size: 10px;
   }
 
   .menu__arrow {
@@ -285,16 +311,17 @@ height:3.5em;
   }
 
   .menu__link--inside {
-    width: 90%;
+    width: 100%;
     margin-left: auto;
-    border-left: 1px solid #1A4C8B;
-    color: #1A4C8B;
-    background-color: #fff;
+    border-left: 1px solid #fff;
+    color: #fff;
+    background-color: #1A4C8B;
+    
   }
 
   .menu__link--inside:hover {
-    background-color: #e6f0ff;
-    color: #2C6CC9;
+    background-color: #1A4C8B;
+    color: #fff;
   }
 }
 </style>
