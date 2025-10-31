@@ -2,7 +2,7 @@
   <nav class="menu">
     <section class="menu__container">
       <div class="menu__logo">
-       
+        <!-- Aquí puedes insertar tu logo si lo deseas -->
       </div>
 
       <ul :class="['menu__links', { 'menu__links--show': menuVisible }]">
@@ -24,7 +24,22 @@
             :ref="el => setSubmenuRef(item.label, el)"
           >
             <li v-for="sub in item.submenu" :key="sub.label" class="menu__inside">
-              <a href="#" class="menu__link menu__link--inside">{{ sub.label }}</a>
+              <router-link
+                v-if="!sub.url.startsWith('http')"
+                :to="sub.url"
+                class="menu__link menu__link--inside"
+              >
+                {{ sub.label }}
+              </router-link>
+              <a
+                v-else
+                :href="sub.url"
+                class="menu__link menu__link--inside"
+                target="_blank"
+                rel="noopener"
+              >
+                {{ sub.label }}
+              </a>
             </li>
           </ul>
         </li>
@@ -39,7 +54,6 @@
 
 <script setup>
 import { ref, reactive, nextTick } from 'vue'
-import logo from '../assets/logo.png'
 import arrow from '../assets/arrow.png'
 import menuIcon from '../assets/menu.png'
 
@@ -61,54 +75,52 @@ function setSubmenuRef(label, el) {
 }
 
 const menuItems = [
-
   {
     label: 'INFORMACIÓN GENERAL',
     submenu: [
-      { label: 'NOTICIAS' },
-      { label: 'RECOMENDACIONES' },
-      { label: 'NUESTRO CENTRO LOCAL' },
-      { label: 'AUTORIDADES DEL CENTRO' },
+      { label: 'NOTICIAS', url: '/informacion/noticias' },
+      { label: 'RECOMENDACIONES', url: '/informacion/recomendaciones' },
+      { label: 'NUESTRO CENTRO LOCAL', url: '/informacion/centro-local' },
+      { label: 'AUTORIDADES DEL CENTRO', url: '/informacion/autoridades' },
     ],
   },
   {
     label: 'OFERTA ACADEMICA',
     submenu: [
-      { label: '- Asesores por Carrera\n/Contactos (Pregrado)' },
-      { label: 'Subprograma Diseño Académico' },
-      { label: '- Curso Introducción - Servicios al Estudiante' },
+      { label: 'Asesores por Carrera / Contactos (Pregrado)', url: '/oferta/asesores' },
+      { label: 'Subprograma Diseño Académico', url: 'https://subprogramadisenoacademicouna826543778.wordpress.com/acerca-de/' },
+      { label: 'Curso Introducción - Servicios al Estudiante', url: '/oferta/introduccion-servicios' },
     ],
   },
   {
     label: 'Gestión Estudiantil',
     submenu: [
-      { label: '- Servicio Comunitario' },
-      { label: 'Cronograma Evaluaciones 2023-2' },
-      { label: 'Reporte de Notas' },
-      { label: 'Registro y Control Estudiantil' },
+      { label: 'Servicio Comunitario', url: '/gestion/servicio-comunitario' },
+      { label: 'Cronograma Evaluaciones 2023-2', url: '/gestion/cronograma-2023-2' },
+      { label: 'Reporte de Notas', url: 'http://www.fichauna.com.ve/?i=1' },
+      { label: 'Registro y Control Estudiantil', url: '/gestion/registro-control' },
     ],
   },
   {
     label: 'Investigación y Postgrado',
     submenu: [
-      { label: 'Investigaciones y Postgrado' },
+      { label: 'Investigaciones y Postgrado', url: '/investigacion/postgrado' },
     ],
   },
-    {
+  {
     label: 'Administración',
     submenu: [
-      { label: 'Administración y Aranceles' },
-      { label: 'Página UNASEC' },
+      { label: 'Administración y Aranceles', url: '/administracion/aranceles' },
+      { label: 'Página UNASEC', url: 'http://www.unasec.com/' },
     ],
   },
-    {
+  {
     label: 'Extensión y Graduación',
     submenu: [
-      { label: 'Extensión Universitaria' },
-      { label: 'Graduandos Táchira' },
+      { label: 'Extensión Universitaria', url: '/extension/universitaria' },
+      { label: 'Graduandos Táchira', url: '/extension/graduandos' },
     ],
   }
-  
 ]
 </script>
 
@@ -136,7 +148,7 @@ body {
   height: 60px;
   border-bottom: 1px solid #d0d0d0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 11em;
+ top:11em;
 }
 
 .menu__container {
@@ -248,57 +260,31 @@ height:3.5em;
   width: 25px;
   height: auto;
 }
-
-@media (max-width: 800px) {
+@media (max-width: 1072px) {
   .menu__hamburguer {
     display: flex;
   }
 
-  .menu__item {
-    --clip: 0;
-    overflow: hidden;
-  }
-
-  .menu__item--active {
-    --transform: rotate(0);
-    --background: #fff;
-  }
-
-  .menu__item--show {
-    background-color: var(--background);
-  }
-
   .menu__links {
     position: fixed;
-    max-width: 400px;
-    width: 100%;
     top: 14.5em;
-    bottom: 0;
     right: 0;
+    width: 100%;
+    max-width: 400px;
     background-color: #1A4C8B;
     overflow-y: auto;
     display: grid;
     grid-auto-rows: max-content;
     transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
   }
 
   .menu__links--show {
-    transform: unset;
-    width: 100%;
+    transform: translateX(0);
   }
 
-  .menu__link {
-    padding: 10px 0;
-    padding-left: 40px;
-    height: auto;
-    color: #fff;
-    background-color:#1A4C8B ;
-    font-size: 10px;
-  }
-
-  .menu__arrow {
-    margin-left: auto;
-    margin-right: 20px;
+  .menu__item {
+    overflow: hidden;
   }
 
   .menu__nesting {
@@ -310,18 +296,16 @@ height:3.5em;
     transition: height 0.3s;
   }
 
-  .menu__link--inside {
-    width: 100%;
-    margin-left: auto;
-    border-left: 1px solid #fff;
-    color: #fff;
-    background-color: #1A4C8B;
-    
+  .menu__link {
+    padding: 10px 0;
+    padding-left: 40px;
+    height: auto;
+    font-size: 14px;
   }
 
-  .menu__link--inside:hover {
-    background-color: #1A4C8B;
-    color: #fff;
+  .menu__arrow {
+    margin-left: auto;
+    margin-right: 20px;
   }
 }
 </style>

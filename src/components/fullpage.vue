@@ -31,8 +31,9 @@ position: fixed;
   height: 170px;
 position: fixed;
   top:1.5em;
-  right: -2em;
-
+  right: 0;
+  left:40%;
+ 
 }
 
 .full-page img{
