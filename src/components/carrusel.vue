@@ -34,7 +34,7 @@ const slides = [
   },
   {
     titulo: 'Estudia en la UNA',
-    descripcion: 'Formación integral con visión humanista',
+    descripcion: 'Educación sin barreras, formación sin fronteras',
     image: '/img/p2.png'
   }
 ]
@@ -83,7 +83,7 @@ const slides = [
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  max-width: 80%;
+  max-width: 50%;
 }
 
 .text-overlay h2,
